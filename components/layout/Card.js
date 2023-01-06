@@ -1,30 +1,8 @@
-import Link from 'next/link';
-import { Box, Card, Image, Text } from '@chakra-ui/core';
+import React from 'react';
+import styles from './Card.module.css';
 
-const Card = ({ title, imageUrl, linkUrl }) => {
-  return (
-    <Link href={linkUrl}>
-      <Card
-        as="a"
-        boxShadow="md"
-        cursor="pointer"
-        borderRadius="md"
-        overflow="hidden"
-      >
-        <Image src={imageUrl} alt={title} />
-        <Box p="6">
-          <Text
-            fontWeight="bold"
-            fontSize="xl"
-            lineHeight="shorter"
-            color="gray.800"
-          >
-            {title}
-          </Text>
-        </Box>
-      </Card>
-    </Link>
-  );
-};
+function Card({ children, className }) {
+  return <div className={`${styles.card} ${className}`}>{children}</div>;
+}
 
 export default Card;

@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { getProducts } from '../api/getProducts';
 import Product from '../../components/Product';
+import Card from '../../components/layout/Card';
 import styles from './index.module.css';
 
 function AllProductsPage({ products }) {
@@ -15,9 +16,9 @@ function AllProductsPage({ products }) {
             as={`/products/${product.id}`}
             key={product.id}
           >
-            <div className={styles.product}>
+            <Card>
               <Product {...product} />
-            </div>
+            </Card>
           </Link>
         ))}
       </div>

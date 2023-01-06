@@ -1,13 +1,18 @@
 import React from 'react';
 import styles from './Product.module.css';
 
-function Product({ image, name, price, description }) {
+function Product({ image, title, price, description, instock, id }) {
+  let img = image[0].fields.file.url;
+
   return (
-    <div>
-      <img className={styles.image} src={image} alt={name} />
-      <h2 className={styles.name}>{name}</h2>
-      <h3 className={styles.price}>{price}</h3>
+    <div className={styles.container}>
+      <img className={styles.image} src={img} alt={title} />
+      <h1 className={styles.title}>{title}</h1>
       <p className={styles.description}>{description}</p>
+      <p className={styles.price}>{price}</p>
+      <p className={styles.availability}>
+        {instock ? 'In stock' : 'Out of stock'}
+      </p>
     </div>
   );
 }
