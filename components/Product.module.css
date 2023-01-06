@@ -1,0 +1,20 @@
+.image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.name {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.price {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #888;
+}
+
+.description {
+  font-size: 14px;
+}
