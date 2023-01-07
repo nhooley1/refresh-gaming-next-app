@@ -1,19 +1,21 @@
-import { getProduct } from '../api/getProduct';
-import { getProducts } from '../api/getProducts';
+// import { getProduct } from '../api/getProduct';
+// import { getProducts } from '../api/getProducts';
+
+import { getProducts } from '../api/products';
+import { getProduct } from '../api/products';
 
 import Product from '../../components/Product';
 
 export async function getStaticPaths() {
   // Fetch the list of all products
-  const products = getProducts();
+  const products = await getProducts();
 
   // Create a list of paths for all products
   const paths = products.map((product) => ({
     params: {
-      id: product.id,
+      id: product.fields.id.toString(),
     },
   }));
-
   return {
     paths,
     fallback: false,
@@ -22,7 +24,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // Fetch the product with the specified id
-  const product = getProduct(params.id);
+  const product = await getProduct(params.id);
 
   return {
     props: {
@@ -32,5 +34,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function ProductPage({ product }) {
-  return <Product {...product} />;
+  console.log(product);
+  return <Product {...product.fields} />;
 }

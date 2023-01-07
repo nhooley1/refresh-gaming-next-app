@@ -11,3 +11,19 @@ export async function getProducts() {
   });
   return response.items;
 }
+
+// export async function getProduct(id) {
+//   console.log('this is the id');
+//   console.log(id);
+
+//   const response = await client.getEntry(id);
+//   return response;
+// }
+
+export async function getProduct(id) {
+  const response = await client.getEntries({
+    content_type: 'product',
+    'fields.id': id,
+  });
+  return response.items[0];
+}
