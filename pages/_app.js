@@ -1,5 +1,15 @@
-import '../styles/globals.css'
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import basketReducer from '../reducers/basketReducer';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+const store = configureStore({
+  reducer: basketReducer,
+});
+
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  );
 }

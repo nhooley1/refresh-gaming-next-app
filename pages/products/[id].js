@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { loadStripe } from '@stripe/stripe-js';
 import Product from '../../components/Product';
 import { useEffect } from 'react';
+import Basket from '../../components/basket/basket';
 
 export async function getStaticPaths() {
   // Fetch the list of all products
@@ -54,6 +55,7 @@ export default function ProductPage({ product }) {
 
   return (
     <>
+      <Basket />
       <Product {...product.fields} />
       <form action="/api/checkout_sessions" method="POST">
         <section>
