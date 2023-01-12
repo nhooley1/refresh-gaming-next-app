@@ -26,6 +26,7 @@
 // }
 
 const AWS = require('aws-sdk');
+import memoryCache from 'memory-cache';
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -36,9 +37,12 @@ AWS.config.update({
 const ses = new AWS.SES();
 
 export default async function sendConfirmationEmail({ email, name }) {
-  console.log('----------------------------');
-  console.log(email, name);
-  console.log('----------------------------');
+  const key = `email_sent_to_${email}`;
+  if (memoryCache.get(key)) {
+    console.log('Email has been sent before, not sending again.');
+    return;
+  }
+  memoryCache.put(key, true, 60 * 60 * 1000); // expire after 1 hour
 
   const params = {
     Destination: {
